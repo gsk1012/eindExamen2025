@@ -24,15 +24,13 @@ class Login {
                 return false;
         }
 
-        // Query naar de juiste tabel
         $stmt = $this->dbh->execute("SELECT * FROM $table WHERE email = ?", [$username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['wachtwoord'])) {
-            // Sessie en cookies instellen
             setcookie('gebruikersnaam', $username, time() + (86400 * 30), "/");
             $_SESSION['gebruikersnaam'] = $username;
-            $_SESSION['role'] = $role; // Bewaar de rol in de sessie
+            $_SESSION['role'] = $role; 
             return true;
         } else {
             return false;

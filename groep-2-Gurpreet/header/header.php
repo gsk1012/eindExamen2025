@@ -1,8 +1,6 @@
 <?php
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";
-$domain = $_SERVER['HTTP_HOST'];
-$root_url = $protocol . $domain . "/eind-examen2025/";
-
+$root_url = "http://" . $_SERVER['HTTP_HOST'] . "/groep-2-Gurpreet/";
+$current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +22,18 @@ $root_url = $protocol . $domain . "/eind-examen2025/";
         <ul>
             <li><a href="<?php echo $root_url; ?>index.php">Home</a></li>
             <li><a href="<?php echo $root_url; ?>contact.php">Contact</a></li>
-            <li><a href="<?php echo $root_url; ?>login/userLogin.php">Inloggen</a></li>
+            <?php if (isset($_SESSION['gebruikersnaam']) || isset($_COOKIE['gebruikersnaam'])): ?>
+                <?php 
+                if (isset($_SESSION['role'])): 
+                    $role = $_SESSION['role'];
+                    $dashboard_link = $root_url . $role . "/dashboard.php";
+                ?>
+                    <li><a href="<?php echo $dashboard_link; ?>">Dashboard</a></li>
+                <?php endif; ?>
+                <li><a href="<?php echo $root_url; ?>uitloggen/uitloggen.php">Uitloggen</a></li>
+            <?php else: ?>
+                <li><a href="<?php echo $root_url; ?>login/userLogin.php">Inloggen</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </body>

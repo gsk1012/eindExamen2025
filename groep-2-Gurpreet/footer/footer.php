@@ -1,3 +1,8 @@
+<?php
+$root_url = "http://" . $_SERVER['HTTP_HOST'] . "/groep-2-Gurpreet/";
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +12,8 @@
     <title>Untitled</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="../groep-2-Gurpreet/css/reset.css">    
-    <link rel="stylesheet" href="../groep-2-Gurpreet/css/footer.css">
+    <link rel="stylesheet" href="<?php echo $root_url; ?>css/reset.css">
+    <link rel="stylesheet" href="<?php echo $root_url; ?>css/footer.css">
 </head>
 
 <body>
